@@ -5,7 +5,7 @@ const Task = require('../models/Task');
 const createSubTask = async (req, res, next) => {
     const taskId = req.params.id;
     const userId = req.user.id;
-    const {title} = req.body;
+    const {title, status, deleted} = req.body;
     try {
         const task = await Task.findById({_id: taskId, userId, deleted: false});
         if (!task) {
@@ -15,8 +15,11 @@ const createSubTask = async (req, res, next) => {
             return res.status(403).json({ message: 'Unauthorized access to this task' });
         }
         const newSubTask = new SubTask({
+            userId,
             taskId,
             title,
+            status,
+            deleted
         });
         await newSubTask.save();
 
