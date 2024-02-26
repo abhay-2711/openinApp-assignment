@@ -6,7 +6,7 @@ const {createSubTask, getAllSubTasks, updateSubTask, deleteSubTask} = require('.
 
 router.use(verifyToken);
 
-router.post('/createSubTask', createSubTask);
+router.post('/createSubTask/:id', createSubTask);
 router.get('/getAllSubTasks/:id', getAllSubTasks);
 router.put('/updateSubTask/:id', updateSubTask);
 router.delete('/deleteSubTask/:id', deleteSubTask);
