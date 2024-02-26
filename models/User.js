@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     priority: {
         type: Number,
         enum: [0, 1, 2, 3],
-        default: 1
+        default: 3
     },
     role: {
         type: String,

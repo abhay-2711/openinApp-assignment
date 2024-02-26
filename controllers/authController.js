@@ -4,9 +4,9 @@ const errorHandler = require('../utils/error');
 const jwt = require('jsonwebtoken');
 
 const signup = async (req, res, next) => {
-    const {name, age, email, password, dateOfBirth, address, phoneNumber, pincode} = req.body;
+    const { email, password, phone_number, priority, role} = req.body;
     const hashedPassword = bcryptjs.hashSync(password, 10);
-    const newUser = new User({name, age, email, password: hashedPassword, dateOfBirth, address, phoneNumber, pincode});
+    const newUser = new User({ email, password: hashedPassword, phone_number, priority, role});
     try {
         await newUser.save();
         res.status(201).json({ message: "User Created Successfully!" });
