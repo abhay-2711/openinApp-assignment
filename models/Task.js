@@ -30,10 +30,7 @@ const TaskSchema = new mongoose.Schema({
     deleted: {
         type: Boolean,
         default: false
-    },
-    deleted_at: {
-        type: Date
-    },
+    }
 }, { timestamps: true });
 
 const Task = mongoose.model('Task', TaskSchema);

@@ -3,12 +3,15 @@ const SubTask = require('../models/SubTask');
 
 // create task by user
 const createTask = async (req, res, next) => {
-    const {title, description} = req.body;
+    const {title, description, dueDate, status, priority, deleted} = req.body;
     const newTask = new Task({
         userId: req.user.id,
         title,
         description,
-        dueDate: new Date(req.body.dueDate),
+        dueDate: new Date(dueDate),
+        status,
+        priority,
+        deleted,
     });
     try {
         await newTask.save();
