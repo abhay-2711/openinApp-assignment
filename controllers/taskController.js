@@ -102,4 +102,28 @@ const deleteTask = async (req, res, next) => {
     }
 };
 
-module.exports = {createTask, getAllTasks, getTask, updateTask, deleteTask};
+//get all user task based on filter : priority
+const filterTaskPriority = async (req, res, next) => {
+    const userId = req.user.id;
+    const {priority} = req.body;
+    try {
+        const tasks = await Task.find({ userId, deleted: false, priority });
+        res.status(200).json(tasks);
+    } catch (error) {
+        next(error);
+    }
+}
+
+//get all user task based on filter : dueDate
+const filterTaskDueDate = async (req, res, next) => {
+    const userId = req.user.id;
+    const {dueDate} = req.body;
+    try {
+        const tasks = await Task.find({ userId, deleted: false, dueDate });
+        res.status(200).json(tasks);
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = {createTask, getAllTasks, getTask, updateTask, deleteTask, filterTaskPriority, filterTaskDueDate};
