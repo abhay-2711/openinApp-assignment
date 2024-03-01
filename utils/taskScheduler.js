@@ -1,4 +1,3 @@
-const cron = require('node-cron');
 const Task = require('../models/Task');
 
 const scheduleTasks = async () => {

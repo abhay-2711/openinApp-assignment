@@ -1,7 +1,5 @@
 require('dotenv').config();
-const cron = require('node-cron');
 const Task = require('../models/Task');
-const User = require('../models/User');
 const twilio = require('twilio');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -21,7 +19,7 @@ const performVoiceCalls = async () => {
                 try {
                     await callUser(user);
                     console.log(`Call initiated to user ${user.id} with priority ${user.priority}`);
-                    break; 
+                    break;  
                 } catch (error) {
                     console.error(`Error calling user ${user.id}: ${error.message}`);
                 }
